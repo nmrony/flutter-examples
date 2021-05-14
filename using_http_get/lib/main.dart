@@ -4,20 +4,20 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() {
-  runApp(new MaterialApp(
-    home: new MyGetHttpData(),
+  runApp(MaterialApp(
+    home: MyGetHttpData(),
   ));
 }
 
 // Create a stateful widget
 class MyGetHttpData extends StatefulWidget {
   @override
-  MyGetHttpDataState createState() => new MyGetHttpDataState();
+  MyGetHttpDataState createState() => MyGetHttpDataState();
 }
 
 // Create the state for our stateful widget
 class MyGetHttpDataState extends State<MyGetHttpData> {
-  final String url = "https://swapi.co/api/people";
+  final String url = "https://swapi.dev/api/people";
   List data;
 
   // Function to get the JSON data
@@ -34,7 +34,7 @@ class MyGetHttpDataState extends State<MyGetHttpData> {
     // To modify the state of the app, use this method
     setState(() {
       // Get the JSON data
-      var dataConvertedToJSON = JSON.decode(response.body);
+      var dataConvertedToJSON = json.decode(response.body);
       // Extract the required part and assign it to the global variable named data
       data = dataConvertedToJSON['results'];
     });
@@ -44,27 +44,27 @@ class MyGetHttpDataState extends State<MyGetHttpData> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Retrieve JSON Data via HTTP GET"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Retrieve JSON Data via HTTP GET"),
       ),
       // Create a Listview and load the data when available
-      body: new ListView.builder(
+      body: ListView.builder(
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
-            return new Container(
-              child: new Center(
-                  child: new Column(
+            return Container(
+              child: Center(
+                  child: Column(
                 // Stretch the cards in horizontal axis
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  new Card(
-                    child: new Container(
-                      child: new Text(
+                  Card(
+                    child: Container(
+                      child: Text(
                         // Read the name field value and set it in the Text widget
                         data[index]['name'],
                         // set some style to text
-                        style: new TextStyle(
+                        style: TextStyle(
                             fontSize: 20.0, color: Colors.lightBlueAccent),
                       ),
                       // added padding

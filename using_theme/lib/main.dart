@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: new MyHome(),
+    home: MyHome(),
     // Set the theme's primary color, accent color,
-    theme: new ThemeData(
+    theme: ThemeData(
       primarySwatch: Colors.green,
       accentColor: Colors.lightGreenAccent,
       // Set background color
@@ -17,20 +17,20 @@ void main() {
 class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       // AppBar
-      appBar: new AppBar(
+      appBar: AppBar(
         // AppBar Title
-        title: new Text("Using Theme"),
+        title: Text("Using Theme"),
       ),
-      body: new Container(
+      body: Container(
         // Another way to set the background color
-        decoration: new BoxDecoration(color: Colors.black87),
-        child: new Center(
-          child: new Container(
+        decoration: BoxDecoration(color: Colors.black87),
+        child: Center(
+          child: Container(
             // use the theme accent color as background color for this widget
             color: Theme.of(context).accentColor,
-            child: new Text(
+            child: Text(
               'Hello World!',
               // Set text style as per theme
               style: Theme.of(context).textTheme.title,
@@ -39,12 +39,15 @@ class MyHome extends StatelessWidget {
         ),
       ),
 
-      floatingActionButton: new Theme(
+      floatingActionButton: Theme(
         // override the accent color of theme for this widget only
-        data: Theme.of(context).copyWith(accentColor: Colors.pinkAccent),
-        child: new FloatingActionButton(
+        data: Theme.of(context).copyWith(
+          colorScheme:
+              Theme.of(context).colorScheme.copyWith(secondary: Colors.pinkAccent),
+        ),
+        child: FloatingActionButton(
           onPressed: null,
-          child: new Icon(Icons.add),
+          child: Icon(Icons.add),
         ),
       ),
     );
